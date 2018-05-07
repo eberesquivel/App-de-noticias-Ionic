@@ -29,7 +29,7 @@
       </ion-header-bar>
       <ion-content>
         <div class="list">
-            <a class="item item-avatar-left" ng-repeat="post in posts" href="{{post.url}}" target="_blank">
+            <a class="item item-thumbnail-left" ng-repeat="post in posts" href="{{post.url}}" target="_blank">
               <img ng-src="{{post.thumbnail}}" ng-if="post.thumbnail.indexOf('http') === 0"/>
               <h2 class="post-title">{{post.title}}</h2>
               <p>
@@ -38,6 +38,12 @@
               </p>
             </a>
         </div>
+        <!-- Implementando el Scroll infinito  -->
+            <ion-infinite-scroll
+              on-infinite="cargarNuevosPosts()"
+              distance="1%">
+            </ion-infinite-scroll>
+
       </ion-content>
     </ion-pane>
   </body>
