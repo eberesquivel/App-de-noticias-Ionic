@@ -13,6 +13,21 @@
 
         });
      });
+     $scope.cargarNuevosPosts = function(){
+      var params2 = {};
+      if($scope.posts.lenght > 0){
+          params2['after']= $scope.posts[$scope.posts.lenght - 1].name;
+
+      }
+       $http.get('https://www.reddit.com/r/all/.json',{params:params2})
+          .success(function(posts){
+         //console.log(posts)
+            angular.forEach(posts.data.children,function(post){
+              $scope.posts.push(post.data);
+          });
+          $scope.$broadcast('scroll.infiniteScrollComplete');
+       });
+     };
   });
 
 app.run(function($ionicPlatform) {
