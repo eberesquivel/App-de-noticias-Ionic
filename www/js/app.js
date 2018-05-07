@@ -6,7 +6,7 @@
   app.controller('RedditCtrl',function($scope,$http){
 
      $scope.posts = [];
-     $http.get('https://www.reddit.com/r/all/.json').success(function(posts){
+     $http.get('https://www.reddit.com/r/gaming/new/.json').success(function(posts){
        //console.log(posts)
         angular.forEach(posts.data.children,function(post){
             $scope.posts.push(post.data);
@@ -19,7 +19,7 @@
           params2['after']= $scope.posts[$scope.posts.lenght - 1].name;
 
       }
-       $http.get('https://www.reddit.com/r/all/.json',{params:params2})
+       $http.get('https://www.reddit.com/r/gaming/new/.json',{params:params2})
           .success(function(posts){
          //console.log(posts)
             angular.forEach(posts.data.children,function(post){
